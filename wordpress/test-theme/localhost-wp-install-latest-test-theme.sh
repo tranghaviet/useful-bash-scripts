@@ -39,10 +39,10 @@ mysql -uroot -p${rootpasswd} -e "CREATE DATABASE ${folder_name} CHARACTER SET ut
 echo "Creating MySQL ${folder_name} user..."
 mysql -uroot -p${rootpasswd} -e "CREATE USER ${folder_name}@'%' IDENTIFIED BY '${folder_name}';"
 echo "Grant ALL PRIVILEGES on ${folder_name} to ${folder_name} user..."
-echo "Flush privileges"
 mysql -uroot -p${rootpasswd} -e "GRANT ALL PRIVILEGES ON ${folder_name}.* TO '${folder_name}'@'%';"
-echo "Done"
+echo "Flush privileges"
 mysql -uroot -p${rootpasswd} -e "FLUSH PRIVILEGES;"
+echo "Done"
 
 echo "============================================"
 echo "A robot is now installing latest WordPress for you..."
