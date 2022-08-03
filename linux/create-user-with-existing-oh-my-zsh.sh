@@ -6,14 +6,19 @@ echo "Username to create:"
 read username
 
 echo "Username have oh-my-zsh:"
-read target_user
+read ohmyzsh_user
 
 useradd -m -s $(which zsh) $username
 
-ln -s /home/$target_user/.oh-my-zsh /home/$username
-ln -s /home/$target_user/.zshrc /home/$username
+sudo -i -u $username bash << EOF
+ln -s /home/$ohmyzsh_user/.oh-my-zsh /home/$username
+ln -s /home/$ohmyzsh_user/.zshrc /home/$username
+EOF
 
-chown $username:$username /home/$username/.zshrc
-chown $username:$username /home/$username/.oh-my-zsh
+echo "Add user to sudo group? (y/n)"
+read -e sudoer
+if [ "$sudoer" == y ] ; then
+usermod -aG sudo $username
+fi
 
-echo "You should set user password by running: passwd $username"
+passwd $username

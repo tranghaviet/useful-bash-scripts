@@ -5,6 +5,7 @@ echo "This script should install as sudoer user but not root"
 
 echo "Installing zsh & oh-my-zsh"
 sudo apt install zsh
+sudo usermod --shell $(which zsh) $USER
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 sudo chown -R root:root .oh-my-zsh .zshrc
 sudo chmod -R 755 .oh-my-zsh
@@ -23,7 +24,6 @@ echo "NOW=$(date +%Y-%m-%d_%H-%M-%S)" | sudo tee -a ~/.zshrc
 echo "DATE=$(date +%Y-%m-%d)" | sudo tee -a ~/.zshrc
 
 echo "switch $USER & root terminal to zsh"
-sudo usermod --shell $(which zsh) $USER
 sudo usermod --shell $(which zsh) root
 sudo ln -s /home/$USER/.oh-my-zsh /root/
 sudo ln -s /home/$USER/.zshrc /root/
