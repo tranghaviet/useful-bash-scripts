@@ -18,17 +18,17 @@ echo "Config .zshrc"
 # fi" >> ~/.zshrc
 sudo sed -i "s/robbyrussell/fletcherm/" ~/.zshrc
 sudo sed -i 's/# DISABLE_AUTO_TITLE="true"/DISABLE_AUTO_TITLE="true"/' ~/.zshrc
-sudo sed -i 's/# ENABLE_CORRECTION="false"/ENABLE_CORRECTION="true"/' ~/.zshrc
+# sudo sed -i 's/# ENABLE_CORRECTION="false"/ENABLE_CORRECTION="true"/' ~/.zshrc
 
 echo 'HIST_STAMPS="dd.mm.yyyy"' | sudo tee -a ~/.zshrc
-echo "HISTSIZE=10000"  | sudo tee -a ~/.zshrc
+echo "HISTSIZE=10000" | sudo tee -a ~/.zshrc
 
 echo "NOW=\$(date +%Y-%m-%d_%H-%M-%S)" | sudo tee -a ~/.zshrc
 echo "DATE=\$(date +%Y-%m-%d)" | sudo tee -a ~/.zshrc
 
 echo "switch $USER & root terminal to zsh"
 sudo usermod --shell $(which zsh) root
-sudo ln -s /home/$USER/.oh-my-zsh /root/
-sudo ln -s /home/$USER/.zshrc /root/
+sudo ln -s $(eval echo ~$USER)/.oh-my-zsh /root/
+sudo ln -s $(eval echo ~$USER)/.zshrc /root/
 
 zsh
