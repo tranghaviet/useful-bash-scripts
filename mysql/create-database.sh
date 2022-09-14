@@ -18,7 +18,7 @@ read -p "Please enter the MySQL database COLLATION [utf8mb4_unicode_ci]:" collat
 collation=${collation:-utf8mb4_unicode_ci}
 
 echo "Creating new MySQL database..."
-mysql -uroot -p${rootpasswd} -e "CREATE DATABASE ${dbname} CHARACTER SET ${charset} COLLATE ${collation};"
+mysql -uroot -p${rootpasswd} -e "CREATE DATABASE IF NOT EXISTS ${dbname} CHARACTER SET ${charset} COLLATE ${collation};"
 
 echo "Database successfully created!"
 echo "Showing existing databases..."
@@ -53,6 +53,10 @@ echo ""
 echo "Granting ALL privileges on ${dbname} to ${username}!"
 mysql -uroot -p${rootpasswd} -e "GRANT ALL PRIVILEGES ON ${dbname}.* TO '${username}'@'${ip}';"
 mysql -uroot -p${rootpasswd} -e "FLUSH PRIVILEGES;"
+# mysql --user=root --password="$rootpasswd" <<-EOSQL
+#   GRANT ALL PRIVILEGES ON ${dbname}.* TO '${username}'@'${ip}';
+#   FLUSH PRIVILEGES;
+# EOSQL
 
 echo "You're good now :)"
 exit
