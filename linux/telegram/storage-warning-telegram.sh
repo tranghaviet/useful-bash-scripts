@@ -16,7 +16,7 @@ DISK_INFO=$(df -h | grep "Filesystem\|$PARITION_PATH" -m 2)
 SERVER_NAME="YOUR_SERVER_NAME"
 
 if [ "$CURRENT" -gt "$ERROR_THRESHOLD" ] ; then
-    . /etc/telegram/telegram-notify --error --title "[Error] $SERVER_NAME partition \$PARITION_PATH reach \$CURRENT%" --html "\`\`\`\n$DISK_INFO\n\`\`\`\nPlease consider scale the server"
+    . /etc/telegram/telegram-notify --error --title "[Error] $SERVER_NAME partition $PARITION_PATH reach $CURRENT%" --text "\`\`\`\n$DISK_INFO\n\`\`\`\nPlease consider scale the server"
 elif [ "$CURRENT" -gt "$WARING_THRESHOLD" ] ; then
-    . /etc/telegram/telegram-notify --waring --title "[Warning] $SERVER_NAME partition \$PARITION_PATH reach \$CURRENT%" --html "\`\`\`\n$DISK_INFO\n\`\`\`"
+    . /etc/telegram/telegram-notify --waring --title "[Warning] $SERVER_NAME partition $PARITION_PATH reach $CURRENT%" --text "\`\`\`\n$DISK_INFO\n\`\`\`"
 fi
