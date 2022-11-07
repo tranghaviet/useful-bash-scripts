@@ -13,7 +13,7 @@ sudo chmod 755 $TELEGRAM_LIB_PATH
 echo "Go to https://t.me/BotFather to create a new bot or choose existing one then get API key"
 read -p "Enter YourAPIKey: " YourAPIKey
 
-echo "\n"
+echo ""
 
 echo "Create a channel then add https://t.me/getidsbot to your channel to get channel ID (include - at the beginning)"
 echo "Or you can direct message to the bot to get User ID."
@@ -28,20 +28,20 @@ user-id=$YourUserOrChannelID
 socks-proxy=
 EOF
 
-echo "\n"
+echo ""
 
 echo "Test it work. You should receive a message with title 'Warning test' in channel/inbox with bot"
 $TELEGRAM_LIB_PATH --warning --title "Warning test" --text "Storage almost full"
 
 sleep 3
 
-echo "\n"
+echo ""
 
 echo "------------------------"
 echo "All your paritions"
 df -h
 
-echo "\n"
+echo ""
 
 echo "Set up alert for each partition"
 read -p "Enter partition path (e.g /dev/sda1): " PARITION_PATH
@@ -57,14 +57,12 @@ sed -i "s/YOUR_SERVER_NAME/$SERVER_NAME/g" $WORK_DIR/storage-warning-telegram.sh
 
 chmod 700 $WORK_DIR/storage-warning-telegram.sh
 
-echo "\n"
+echo ""
 
 echo "Set up crontab"
 sudo apt install cron -y
 
-sudo tee /etc/cron.hourly/storage-warning-telegram > /dev/null <<EOF
-@hourly $WORK_DIR/storage-warning-telegram.sh >> /dev/null 2>&1
-EOF
+crontab -l | { cat; echo "0 * * * * /opt/scripts/storage-warning-telegram.sh >> /dev/null 2>&1"; } | crontab -
 
 sudo service cron restart
 
