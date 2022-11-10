@@ -7,6 +7,11 @@ echo "Installing zsh & oh-my-zsh"
 sudo apt install zsh -y
 sudo usermod --shell $(which zsh) $USER
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)" "" --unattended
+
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
 sudo chown -R root:root .oh-my-zsh .zshrc
 sudo chmod -R 755 .oh-my-zsh
 sudo chmod 744 .zshrc
@@ -17,6 +22,7 @@ echo "Config .zshrc"
 #     . ~/.bash_profile;
 # fi" >> ~/.zshrc
 sudo sed -i "s/robbyrussell/fletcherm/" ~/.zshrc
+sudo sed -i "s/(git)/(git z zsh-autosuggestions zsh-completions zsh-syntax-highlighting)/" ~/.zshrc
 sudo sed -i 's/# DISABLE_AUTO_TITLE="true"/DISABLE_AUTO_TITLE="true"/' ~/.zshrc
 # sudo sed -i 's/# ENABLE_CORRECTION="false"/ENABLE_CORRECTION="true"/' ~/.zshrc
 
