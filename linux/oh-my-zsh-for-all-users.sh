@@ -4,7 +4,7 @@ echo "Install oh-my-zsh for all users"
 echo "This script should install as sudoer user but not root"
 
 echo "Installing zsh & oh-my-zsh"
-sudo apt install zsh -y
+sudo apt install zsh git -y
 sudo usermod --shell $(which zsh) $USER
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)" "" --unattended
 
