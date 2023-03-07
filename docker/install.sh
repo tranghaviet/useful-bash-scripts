@@ -16,11 +16,13 @@ echo "Install docker and docker-compose..."
 
 # Alternatively you can use the official docker install script
 wget -qO- https://get.docker.com/ | sh
+docker --version
 
 # Install docker-compose
-COMPOSE_VERSION=`git ls-remote https://github.com/docker/compose | grep refs/tags | grep -oE "[0-9]+\.[0-9][0-9]+\.[0-9]+$" | sort --version-sort | tail -n 1`
+COMPOSE_VERSION="$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep '\"tag_name\":' | sed -E 's/.*\"([^\"]+)\".*/\1/')"
 sudo curl -L "https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
+docker-compose --version
 
 # Install docker-cleanup command
 cd /tmp
