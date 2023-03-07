@@ -12,9 +12,9 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-sudo chown -R root:root .oh-my-zsh .zshrc
-sudo chmod -R 755 .oh-my-zsh
-sudo chmod 744 .zshrc
+sudo chown -R root:root ~/.oh-my-zsh ~/.zshrc
+sudo chmod -R 755 ~/.oh-my-zsh
+sudo chmod 744 ~/.zshrc
 
 echo "Config .zshrc"
 # echo "Auto load .bash_profile"

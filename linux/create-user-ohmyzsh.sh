@@ -23,5 +23,6 @@ if [ "$sudoer" == y ] ; then
 sudo usermod -aG sudo $username
 fi
 
+sudo usermod -aG $targer_user $username
 echo "Password for user"
 sudo passwd $username
