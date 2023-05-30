@@ -17,10 +17,10 @@ sudo chmod -R 755 ~/.oh-my-zsh
 sudo chmod 744 ~/.zshrc
 
 echo "Config .zshrc"
-# echo "Auto load .bash_profile"
-# echo "if [ -f ~/.bash_profile ]; then
-#     . ~/.bash_profile;
-# fi" >> ~/.zshrc
+echo "Auto load .bash_profile"
+echo "if [ -f ~/.bash_profile ]; then
+    . ~/.bash_profile;
+fi" | sudo tee -a >> ~/.zshrc > /dev/null
 sudo sed -i "s/robbyrussell/fletcherm/" ~/.zshrc
 sudo sed -i "s/(git)/(git z zsh-autosuggestions zsh-completions zsh-syntax-highlighting)/" ~/.zshrc
 sudo sed -i 's/# DISABLE_AUTO_TITLE="true"/DISABLE_AUTO_TITLE="true"/' ~/.zshrc
